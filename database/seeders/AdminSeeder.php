@@ -18,8 +18,8 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $email = env('ADMIN_EMAIL');
-        $username = env('ADMIN_USERNAME');
-        $password = env('ADMIN_PASSWORD', 'admin');
+        $username = env('ADMIN_USERNAME', 'admin');
+        $password = env('ADMIN_PASSWORD');
 
         if (empty($email) || (empty($password))) {
             throw new RuntimeException('ADMIN_EMAIL dan ADMIN_PASSWORD wajib diisi terlebih dahulu!');
