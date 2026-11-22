@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
@@ -27,5 +28,13 @@ Route::get('/profiles.index', [ProfileController::class, 'index'])
 Route::post('/profiles.index', [ProfileController::class, 'store']);
 
 Route::get('/profile.index', [ProfileController::class, 'getProfile']);
+
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'role:admin'])
+    ->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::resource('packages', PackageController::class);
+    });
 
 require __DIR__ . '/settings.php';
