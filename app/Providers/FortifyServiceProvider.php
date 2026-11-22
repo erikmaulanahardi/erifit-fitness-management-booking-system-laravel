@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Livewire\Livewire;
+use Override;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,22 @@ class FortifyServiceProvider extends ServiceProvider
         $this->configureViews();
         $this->configureRateLimiting();
         $this->configurePasswordConfirmation();
+        $this->app->singleton(LoginResponse::class, function () {
+            return new class implements LoginResponse {
+                #[Override]
+                public function toResponse($request)
+                {
+                    $user = $request->user();
+
+                    $redirectUrl = match ($user->role) {
+                        'admin' => route('admin.dashboard'),
+                        default => route('dashboard'),
+                    };
+
+                    return redirect()->intended($redirectUrl);
+                }
+            };
+        });
     }
 
     /**
@@ -58,11 +76,11 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function configureViews(): void
     {
-        Fortify::loginView(fn () => view('livewire.auth.login'));
-        Fortify::confirmPasswordView(fn () => view('livewire.auth.confirm-password'));
-        Fortify::registerView(fn () => view('livewire.auth.register'));
-        Fortify::resetPasswordView(fn () => view('livewire.auth.reset-password'));
-        Fortify::requestPasswordResetLinkView(fn () => view('livewire.auth.forgot-password'));
+        Fortify::loginView(fn() => view('livewire.auth.login'));
+        Fortify::confirmPasswordView(fn() => view('livewire.auth.confirm-password'));
+        Fortify::registerView(fn() => view('livewire.auth.register'));
+        Fortify::resetPasswordView(fn() => view('livewire.auth.reset-password'));
+        Fortify::requestPasswordResetLinkView(fn() => view('livewire.auth.forgot-password'));
     }
 
     /**
@@ -75,10 +93,9 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
-
     }
 }
