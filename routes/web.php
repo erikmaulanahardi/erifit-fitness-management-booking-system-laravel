@@ -10,24 +10,12 @@ use App\Models\Member;
 use App\Models\PersonalTrainer;
 
 Route::view('/', 'home.index')->name('home');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
+    
 Route::get('/contact', [DashboardController::class, 'contacts'])
     ->name('contact');
 
 Route::get('/membership', [PackageController::class, 'membershipPlans'])
     ->name('membership');
-    
-Route::get('/profiles.index', [ProfileController::class, 'index'])
-    ->middleware('auth')
-    ->name('profile');
-
-Route::post('/profiles.index', [ProfileController::class, 'store']);
-
-Route::get('/profile.index', [ProfileController::class, 'getProfile']);
 
 Route::prefix('admin')
     ->name('admin.')
@@ -35,6 +23,15 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::resource('packages', PackageController::class);
+    });
+
+Route::prefix('member')
+    ->name('member.')
+    ->middleware(['auth', 'role:member'])
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profiles', [ProfileController::class, 'index'])->name('profile');
+        Route::post('/profiles', [ProfileController::class, 'store'])->name('profile.store');
     });
 
 require __DIR__ . '/settings.php';

@@ -19,10 +19,10 @@
 
                 @auth
                 <nav class="flex items-center gap-1 lg:gap-2">
-                    <x-nav-link href="{{route('dashboard')}}">Dashboard</x-nav-link>
+                    <x-nav-link href="{{route('member.dashboard')}}">Dashboard</x-nav-link>
                     <x-nav-link href="{{route('membership')}}">Membership</x-nav-link>
                     <x-nav-link href="{{route('contact')}}">Contacts</x-nav-link>
-                    <x-nav-link href="{{route('profile')}}">Profile</x-nav-link>
+                    <x-nav-link href="{{route('member.profile')}}">Profile</x-nav-link>
                 </nav>
                 @else
                 <nav class="flex items-center gap-1 lg:gap-2">
@@ -70,7 +70,7 @@
             <footer class="bg-gray-100">
                 <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
                     <div class="flex justify-center text-teal-600">
-                        <a href="{{ route('dashboard') }}" class="text-xl lg:text-2xl font-extrabold tracking-tight text-red-600 whitespace-nowrap">EriFit Fitness Center</a>
+                        <a href="{{ route('member.dashboard') }}" class="text-xl lg:text-2xl font-extrabold tracking-tight text-red-600 whitespace-nowrap">EriFit Fitness Center</a>
                     </div>
 
                     <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-600">

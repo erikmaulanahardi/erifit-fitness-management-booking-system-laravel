@@ -43,7 +43,8 @@ class FortifyServiceProvider extends ServiceProvider
 
                     $redirectUrl = match ($user->role) {
                         'admin' => route('admin.dashboard'),
-                        default => route('dashboard'),
+                        'member' => route('member.dashboard'),
+                        default => route('home'),
                     };
 
                     return redirect()->intended($redirectUrl);

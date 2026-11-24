@@ -8,12 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
-        $fullname = session()->get('fullname');
-
-        return view('dashboard', [
-            'fullname' => $fullname
-        ]);
+        return view('member.dashboard.index');
     }
 
     public function contacts()

@@ -102,7 +102,7 @@
                     <p class="text-xs text-gray-500 mt-0.5">Perbarui data diri dan ukuran tubuhmu secara berkala.</p>
                 </div>
                 
-                <form action="profiles.index" method="POST" class="space-y-5">
+                <form action="{{ route('member.profile.store') }}" method="POST" class="space-y-5">
                     @csrf
 
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 ">

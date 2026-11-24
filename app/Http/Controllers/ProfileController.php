@@ -11,7 +11,7 @@ class ProfileController extends Controller
         $user = $request->user();
         $member = $user->member;
 
-        return view('profiles.index', [
+        return view('member.profiles.index', [
             'user' => $user,
             'member' => $member, 
         ]);
@@ -35,7 +35,7 @@ class ProfileController extends Controller
             
         );
 
-        return to_route('profile')->with('success', 'Yeyyy, profil kamu sudah berhasil diubah dan tersimpan');
+        return to_route('member.profile')->with('success', 'Yeyyy, profil kamu sudah berhasil diubah dan tersimpan');
     }
 
     public function getProfile (Request $request) {
