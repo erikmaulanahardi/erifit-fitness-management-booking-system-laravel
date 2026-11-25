@@ -2,7 +2,7 @@
 
 **EriFit** is a web-based gym operations and membership management system built with **Laravel 12** and **PostgreSQL**. This project is developed from the ground up with a focus on clean backend architecture, relational database integrity, and role-based access control (RBAC).
 
-**(STILL WORK IN PROGERESS)**
+**(STILL WORK IN PROGRESS)**
 ---
 
 ## Tech Stack
