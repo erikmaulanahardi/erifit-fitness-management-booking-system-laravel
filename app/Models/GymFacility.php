@@ -21,7 +21,7 @@ class GymFacility extends Model
     }
 
     public function package(): BelongsToMany {
-        return $this->belongsToMany(Package::class, 'package_facilites', 'package_id', 'facility_id')->withTimestamps();
+        return $this->belongsToMany(Package::class, 'package_facilities', 'facility_id', 'package_id')->withTimestamps();
     }
     public function packageFacility(): HasMany {
         return $this->hasMany(PackageFacility::class);
