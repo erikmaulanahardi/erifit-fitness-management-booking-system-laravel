@@ -22,7 +22,7 @@
                             {{ $members->firstItem() + $index }}
                         </td>
                         <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
-                            {{ $member->name}}
+                            {{ $member->name }}
                         </td>
                         <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
                             {{ $member->phone_number }}
@@ -38,22 +38,24 @@
                         </td>
                         <td class="whitespace-nowrap px-6 py-4">
                             @if ($member->is_active)
-                            <span class="inline-flex items-center rounded-full bg-green-300 px-2.5 py-0.5 text-xs font-medium text-green-700">
-                                Active
-                            </span class="inline-flex items-center rounded-full bg-red-300 px-2.5 py-0.5 text-xs font-medium text-red-700">
+                                <span
+                                    class="inline-flex items-center rounded-full bg-green-300 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                                    Active
+                                </span
+                                    class="inline-flex items-center rounded-full bg-red-300 px-2.5 py-0.5 text-xs font-medium text-red-700">
                             @else
-                            <span>
-                                Inactive
-                            </span>
+                                <span>
+                                    Inactive
+                                </span>
                             @endif
                         </td>
                     </tr>
-                    @empty
-                        <tr>
-                            <td colspan="7" class="px-6 py-8 text-center text-gray-800">
-                                Belum ada member yang terdaftar di sistem EriFit!
-                            </td>
-                        </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="px-6 py-8 text-center text-gray-800">
+                            Belum ada member yang terdaftar di sistem EriFit!
+                        </td>
+                    </tr>
                 @endforelse
             </tbody>
 

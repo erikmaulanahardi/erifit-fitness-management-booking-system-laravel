@@ -16,8 +16,13 @@ class PersonalTrainer extends Model
         'is_active',
     ];
 
+    protected function cast(): array {
+        return [
+            'is_active' => 'boolean',
+        ];
+    }
     public function user(): BelongsTo
     {
-        return $this->BelongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

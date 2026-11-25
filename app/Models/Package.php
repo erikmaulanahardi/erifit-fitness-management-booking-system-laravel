@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Package extends Model
 {
@@ -24,5 +26,13 @@ class Package extends Model
             'duration_days' => 'integer',
             'is_active' => 'boolean',
         ];
+    }
+
+    public function gymFacility(): BelongsToMany {
+        return $this->belongsToMany(GymFacility::class, 'package_facilities', 'package_id', 'facility_id')->withTimestamps();
+    }
+
+    public function packageFacility(): HasMany {
+        return $this->hasMany(PackageFacility::class, 'package_id');
     }
 }
