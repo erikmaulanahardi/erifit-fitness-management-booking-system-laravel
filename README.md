@@ -25,7 +25,7 @@
   - **Transactions & Historical Snapshots:** `orders`, `order_items` (preserves `package_name_snapshot`, `price_at_purchase`, `duration_days_snapshot`, and `session_quota_snapshot` so historical invoices remain accurate even if package prices change), and `payments`.
   - **Subscriptions & Coaching:** `membership_subscriptions`, `personal_training_subscriptions`, `training_sessions`, `training_sessions_histories`, and `training_sessions_reschedule_requests`.
 
-![EriFit Entity Relationship Diagram](docs/ERD - EriFit.drawio.png)
+![EriFit Entity Relationship Diagram](docs/ERD%20-%20EriFit.drawio.png)
 
 ---
 
