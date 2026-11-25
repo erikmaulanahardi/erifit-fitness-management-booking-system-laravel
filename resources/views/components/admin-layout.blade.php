@@ -23,9 +23,9 @@
                     class="flex items-center px-4 py-2.5 rounded-lg font-medium transition
                     {{ request()->routeIs('admin.dashboard') ? 'bg-sky-50 text-sky-700 font-semibold border-sky-600 shadow-sm' : 'hover:bg-gray-100 hover:text-slate-900' }}">Dashboard
                 </a>
-                <a href="#"
+                <a href="{{ route('admin.members-list') }}"
                     class="flex items-center px-4 py-2.5 rounded-lg font-medium transition
-                    {{ request()->routeIs('admin.memberlist') ? 'bg-sky-50 text-sky-700 font-semibold border-sky-600 shadow-sm' : 'hover:bg-gray-100 hover:text-slate-900' }}">Members
+                    {{ request()->routeIs('admin.members-list') ? 'bg-sky-50 text-sky-700 font-semibold border-sky-600 shadow-sm' : 'hover:bg-gray-100 hover:text-slate-900' }}">Members
                     List
                 </a>
                 <a href="#"

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Member extends Model
 {
+    protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
         'name',
@@ -52,12 +53,13 @@ class Member extends Model
             'date_of_birth' => 'date',
             'body_weight' => 'decimal:2',
             'body_height' => 'decimal:2',
+            'body_fat_percentage' => 'decimal:2',
             'is_active' => 'boolean',
         ];
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\MemberController;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\PersonalTrainer;
@@ -22,6 +23,7 @@ Route::prefix('admin')
     ->middleware(['auth', 'role:admin'])
     ->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/members-list', [MemberController::class, 'index'])->name('members-list');
         Route::resource('packages', PackageController::class);
     });
 
